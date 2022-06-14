@@ -48,8 +48,6 @@ $dados = $consulta->fetchALL();
         <p class="text-center">CRUD</p>
     </nav><br>
 
-    <!-- Botão abre modal cadastrar -->
-
     <div class="container container-sm justify-content-center bg-light text-black border border-secondary rounded">
         <br>
         <div class=" input-group mb-3">
