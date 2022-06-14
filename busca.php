@@ -12,7 +12,7 @@ $consulta = $conn->prepare("SELECT * FROM tabela_teste WHERE nome LIKE '%" . $no
 $consulta->execute();
 $crud = $consulta->fetchALL();
 
-//Desenha o html aqui para apresentar a etiqueta no est_saida_form_add.php
+//Desenha o html aqui para apresentar no index.php
 if (($nome != null) || ($nome != '')) {
     echo "
         <table class='table table-striped'>
