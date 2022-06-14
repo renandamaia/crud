@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 include_once("conexao.php");
 
 // seleciona no banco de dados os dados para listar na tela
