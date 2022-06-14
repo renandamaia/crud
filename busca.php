@@ -2,7 +2,6 @@
 
 session_start();
 
-// BUSCA SEM REFRESH
 include_once('conexao.php');
 
 $nome = $_POST["nome"];
