@@ -1,29 +1,16 @@
 <?php
 
-include_once("conexao.php");
+if (count($_GET) > 0) {
 
-$id = 0;
+    $id = $_GET["id"];
 
-if (!empty($_GET['id'])) {
+    include_once("conexao.php");
 
-    $id = $_REQUEST['id'];
-
-    // seleciona no banco de dados os dados para listar na tela
-    $consulta = $conn->prepare("SELECT * FROM tabela_teste WHERE id = $id");
+    // seleciona no banco de dados o cadastro = id
+    $consulta = $conn->prepare("SELECT * FROM tabela_teste WHERE id = " . $id);
     $consulta->execute();
     $crud = $consulta->fetchALL();
 }
-
-if (!empty($_POST)) {
-    $id = $_POST['id'];
-
-    $sql = "DELETE FROM tabela_teste WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([$id]);
-
-    header('Location: index.php');
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -43,20 +30,31 @@ if (!empty($_POST)) {
 <body>
     <p>
     <div class="container container-sm justify-content-center bg-light text-black border border-secondary rounded">
-        <div class="span10 offset1">
-            <div class="row">
-                <h2 class="well">DELETE</h2>
+
+        <form action="crudEditar.php" method="POST">
+            <h2>READ</h2>
+            <br>
+
+            <div class="form-group">
+                <label>Id: </label>
+                <input type="number" readonly value="<?= $crud[0]['id']; ?>" class="form-control" name="id" id="id">
             </div>
-            <p>
-            <form class="form-horizontal" action="crudDelete.php" method="POST">
-                <input type="hidden" name="id" value="<?php echo $id; ?>" />
-                <div class="alert alert-danger"> Deseja excluir o contato <?php echo $crud[0]['nome']; ?>?
-                </div>
-                <div class="form actions">
-                    <button type="submit" class="btn btn-danger">Sim</button>
-                    <a href="index.php" type="button" class="btn btn-primary">Não</a>
-                </div>
-            </form>
-        </div>
+
+            <div class="form-group">
+                <label>Nome da máquina: </label>
+                <input type="text" readonly value="<?= $crud[0]['nome']; ?>" class="form-control" name="nome" id="nome">
+            </div>
+
+            <div class="form-group">
+                <label>Código: </label>
+                <input type="number" readonly value="<?= $crud[0]['codigo']; ?>" class="form-control" name="codigo" id="codigo">
+            </div>
+            <br>
+
+            <a href="index.php" type="button" class="btn btn-primary">Voltar</a>
+        </form>
         <br>
     </div>
+</body>
+
+</html>
