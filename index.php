@@ -53,10 +53,10 @@ $dados = $consulta->fetchALL();
             <input class="form-control" autofocus required type="text" id="busca" name="busca">
         </div>
         <p>
-            <?php if ($_SESSION['input'] != null) : ?>
+  
                 <!-- Class que recebe o retorno da pesquisa do js -->
                 <span class="resultBusca"></span>
-            <?php endif; ?>
+       
     </div>
     <p>
 
